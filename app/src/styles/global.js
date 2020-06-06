@@ -26,7 +26,6 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-
   .push-right{
     float:right;
   }
@@ -34,4 +33,5 @@ export default createGlobalStyle`
     background: red;
     margin-top:5rem;
 }
+
 `;

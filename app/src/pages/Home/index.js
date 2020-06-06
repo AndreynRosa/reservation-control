@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Header from '../../components/Header';
+import { Grid, Button, Paper } from '@material-ui/core';
 
 import { useStyles } from './styles';
-import { Container, Grid } from '@material-ui/core';
+import Header from '../../components/Header';
 import CustomCard from '../../components/CustomCard';
 
 export default function Home() {
@@ -12,11 +12,14 @@ export default function Home() {
     name: 'salão',
     cleanValue: '50',
     roles: 'Fechar todas as janelas ao sair',
-    id: 10
+    id: 10,
   };
   return (
     <Header>
-      <span className={classes.pageTitle}>Home</span>
+      <Paper className={classes.titleContainer}>
+        <span className={classes.pageTitle}>Home</span>
+        <Button className="push-right">Novo comodo</Button>
+      </Paper>
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <CustomCard {...mock}></CustomCard>

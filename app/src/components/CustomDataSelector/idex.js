@@ -32,7 +32,7 @@ function CustomDataSelector(props) {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
-        // className={classes.keyboardDatePicker}
+        className={classes.keyboardDatePicker}
         margin="normal"
         id={123123}
         name={"name"}

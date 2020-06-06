@@ -11,6 +11,9 @@ export const useStyles = makeStyles({
     height: '5rem',
     marginBottom: '2rem',
     alignItems: 'center',
-    padding: '1rem',
+    padding: "1rem"
+  },
+  table: {
+    background: '#fff',
   },
 });

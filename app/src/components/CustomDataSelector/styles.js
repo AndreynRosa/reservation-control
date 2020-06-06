@@ -2,9 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
   keyboardDatePicker: {
-    color: 'RED',
-    margin: '10px',
-    background: 'blue',
+    width: '100%',
   },
   cardTitleWhite: {
     color: '#FFFFFF',
