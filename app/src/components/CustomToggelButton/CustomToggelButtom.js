@@ -13,7 +13,7 @@ import {
 function CustomToggelButton(props) {
   const [open, setOpen] = React.useState(false);
 
-  const { buttonLabel, isShow, children, title, size, ...res } = props;
+  const { buttonLabel, btnClass, isShow, children, title, size, ...res } = props;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -26,7 +26,7 @@ function CustomToggelButton(props) {
 
   return (
     <div>
-      <Button size={size} color="primary" onClick={handleClickOpen} {...res}>
+      <Button size={size}  variant="outlined" color="primary" onClick={handleClickOpen} {...res}>
         {buttonLabel}
       </Button>
       <Dialog

@@ -5,6 +5,8 @@ import { Grid, Button, Paper } from '@material-ui/core';
 import { useStyles } from './styles';
 import Header from '../../components/Header';
 import CustomCard from '../../components/CustomCard';
+import CustomToggelButton from '../../components/CustomToggelButton/CustomToggelButtom';
+import SpacesForm from '../../Form/SpacesForm';
 
 export default function Home() {
   const classes = useStyles();
@@ -18,7 +20,9 @@ export default function Home() {
     <Header>
       <Paper className={classes.titleContainer}>
         <span className={classes.pageTitle}>Home</span>
-        <Button className="push-right">Novo comodo</Button>
+        <CustomToggelButton className={classes.btn} buttonLabel="Reservar">
+          <SpacesForm />
+        </CustomToggelButton>
       </Paper>
       <Grid container spacing={2}>
         <Grid item xs={4}>

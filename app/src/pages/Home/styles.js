@@ -13,4 +13,9 @@ export const useStyles = makeStyles({
     alignItems: 'center',
     padding: '1rem',
   },
+  btn:{
+    float: "right",
+    marginTop: "-2%",
+
+  }
 });

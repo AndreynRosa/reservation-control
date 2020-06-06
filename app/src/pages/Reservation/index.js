@@ -34,8 +34,12 @@ function Reservation() {
           <TableCell>20/10/2020</TableCell>
           <TableCell>Confirmada</TableCell>
           <TableCell>
-            <Button onClick={() => console.log("aqui")}>Confirmar</Button>
-            <Button onClick={() => console.log("aqui")}>Suspender</Button>
+            <Button variant="outlined" onClick={() => console.log('aqui')}>
+              Confirmar
+            </Button>
+            <Button variant="outlined" onClick={() => console.log('aqui')}>
+              Suspender
+            </Button>
           </TableCell>
         </TableBody>
       </Table>

@@ -29,9 +29,9 @@ export default createGlobalStyle`
   .push-right{
     float:right;
   }
-  .viewContainer{
-    background: red;
-    margin-top:5rem;
+  .MuiButtonBase-root {
+  text-transform:  none;
 }
+
 
 `;

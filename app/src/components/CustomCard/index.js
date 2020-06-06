@@ -24,16 +24,19 @@ function CustomCard(props) {
         <Typography className={classes.pos} color="textSecondary">
           Taxa de Limpeza:{cleanValue}
         </Typography>
-        <Typography variant="body2" component="p">
-          <p>{roles}</p>
+
+        <Typography color="textSecondary">
+          <p>Regras:{roles}</p>
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className={classes.footer}>
         <CustomToggelButton buttonLabel="Edit">
           <SpacesForm {...props} />
         </CustomToggelButton>
-        <Button>Deletar</Button>
-        <CustomToggelButton buttonLabel="Reservar" className="push-right">
+        <Button color="secondary" variant="outlined">
+          Deletar
+        </Button>
+        <CustomToggelButton buttonLabel="Reservar">
           <RentSpace {...props} />
         </CustomToggelButton>
       </CardActions>

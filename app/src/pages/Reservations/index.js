@@ -35,7 +35,7 @@ function Reservation() {
           <TableCell>Valor</TableCell>
           <TableCell>Reservas</TableCell>
           <TableCell>
-            <Button onClick={() => history.push('/reserv')}>Visualizar</Button>
+            <Button  variant="outlined" onClick={() => history.push('/reserv')}>Detalhar</Button>
           </TableCell>
         </TableBody>
       </Table>
