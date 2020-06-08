@@ -56,11 +56,11 @@ O sistema   que foi criado considera que o usuário já está autenticado, e é 
 
 
 <h3>Tecnologias </h3>
-Foi desenvolvido utilizando react, por tanto precisára do Node.js na sua maquina;
+Foi desenvolvido utilizando react, por tanto precisará do Node.js na sua máquina;
 <ul>
   <li>styled-components</li>
   <li>matirial-ui</li>
-  <li>prettier </li> 
+  <li>prettier</li> 
    <li>eslint </li>
    <li>hooks </li>
  </uL>
@@ -71,7 +71,7 @@ Foi desenvolvido utilizando react, por tanto precisára do Node.js na sua maquin
 <h4>npm install</h4>
  ou
 <h4>yarn</h4>
- Assim você ira instalar os node_modules.</br>
+ Assim você irá instalar os node_modules.</br>
 <h4>npm start</h4>
  ou
  
