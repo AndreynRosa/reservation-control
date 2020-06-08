@@ -1,6 +1,5 @@
 # Reservation-control
 
-O projeto consiste em uma parte, vaolta ao servidor. O back-end que se encontra na pasta reserv.
 <h1>API JAVA</h1>
 
 <h3> Tecnologias</h3>
