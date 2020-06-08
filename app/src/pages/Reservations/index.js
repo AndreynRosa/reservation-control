@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+
 
 import {
   Paper,
@@ -21,7 +21,7 @@ import { updateStatus } from '../../services/ReservationService';
 
 function Reservation() {
   const [data, setData] = useState([]);
-  const [isIniti, setIsInit] = useState(true);
+
 
   const loadData = useCallback(async () => {
     let response = await findAllReservation();
@@ -39,13 +39,10 @@ function Reservation() {
     loadData();
   });
   useEffect(() => {
-    if (isIniti) {
+
       loadData();
-      setIsInit(false);
-    }
   }, []);
   const classes = useStyles();
-  const history = useHistory();
   return (
     <Header>
       <Paper className={classes.titleContainer}>

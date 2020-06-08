@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { Grid, Button, Paper } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 
 import { useStyles } from './styles';
 import Header from '../../components/Header';
@@ -14,21 +14,18 @@ import { findAllSpaces } from '../../services/SpacesServices';
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const [isIniti, setIsInit] = useState(true);
   const classes = useStyles();
-
 
   const loadData = useCallback(async () => {
     let response = await findAllSpaces();
     response = await response;
     setData(response.data);
   }, []);
+
   useEffect(() => {
-    if(isIniti){
 
       loadData();
-      setIsInit(false)
-    }
+
   }, []);
   return (
     <Header>
@@ -43,7 +40,7 @@ export default function Home() {
           ? data.map(space => {
               return (
                 <Grid item xs={4}>
-                  <CustomCard  {...space}></CustomCard>
+                  <CustomCard {...space}></CustomCard>
                 </Grid>
               );
             })

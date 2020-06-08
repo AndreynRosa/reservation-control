@@ -33,17 +33,17 @@ class ReservApplicationTests {
 
 	@Test
 	void sucessSaveRoom() throws Exception {
-		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("Academia", new BigDecimal(50.01), "Leve sua mascára.");
 		SpaceEntity createdRoom = spacesService.save(space);
 		assertNotNull(createdRoom.getId());
 	}
 
 	@Test
 	void sucessUpdateRoom() throws Exception {
-		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("Churrasqueira", new BigDecimal(00), "O que for encontrado será deixado na portaria.");
 		SpaceEntity createdSpace = spacesService.save(space);
 		SpaceEntity updateSpace = spacesService.findById(createdSpace.getId());
-		updateSpace.setName("Updated name");
+		updateSpace.setName("Churrasqueira A");
 		updateSpace = spacesService.save(updateSpace);
 		SpaceEntity sevedUpdatatedSpace = spacesService.findById(updateSpace.getId());
 		assertTrue((sevedUpdatatedSpace.getId() == createdSpace.getId())
@@ -52,7 +52,7 @@ class ReservApplicationTests {
 
 	@Test
 	void sucessDeleteRoom() throws Exception {
-		SpaceEntity room = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity room = getSpace("Cobertura da piscina", new BigDecimal(600.01), "A faxinha é reposabilidade do quem utiliza!");
 		SpaceEntity createdRoom = spacesService.save(room);
 		spacesService.delete(createdRoom.getId().toString());
 		SpaceEntity isDeltedRoom = spacesService.findById(createdRoom.getId());
@@ -61,9 +61,10 @@ class ReservApplicationTests {
 
 	@Test
 	void succesListRoom() throws Exception {
-		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("Sala de reunião", new BigDecimal(15.27), "Apagar as luzes.");
+		SpaceEntity space2 = getSpace("Sala de jogos", new BigDecimal(89.27), "Desligar os aparelhos. Guardar os tabuleiros");
 		SpaceEntity createdSpace01 = spacesService.save(space);
-		SpaceEntity createdSpace02 = spacesService.save(space);
+		SpaceEntity createdSpace02 = spacesService.save(space2);
 		spacesService.save(createdSpace01);
 		spacesService.save(createdSpace02);
 		List<SpaceEntity> spaces = spacesService.list();
@@ -72,24 +73,25 @@ class ReservApplicationTests {
 
 	@Test
 	void suceesSaveReservation() throws Exception {
-		SpaceEntity space = getSpace("With reserv", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("Piscina", new BigDecimal(15.37), "Tomar ducha antes de entrar. Limpar os pé. Proibido crianças menoras de 8 anos sozinha");
 		SpaceEntity createdSpace = spacesService.save(space);
 
-		ReservationEntity reservRomm = getReservRoom();
-		ReservationDto createdReserv = reservService.save(reservRomm, createdSpace.getId());
+		ReservationEntity reservSpace = getReservRoom();
+		ReservationDto createdReserv = reservService.save(reservSpace, createdSpace.getId());
 		assertNotNull(createdReserv.getId());
 	}
 
 	@Test
 	void sucessUpdateReservation() throws Exception {
-		SpaceEntity space = getSpace("With reserv", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("Salão de Festas", new BigDecimal(30.01), "Empilhar cadeiras. Fechar as janelas.");
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();
 		ReservationDto createdReserv = reservService.save(reservRomm, createdSpace.getId());
 		ReservationEntity savedReserv = reservService.findById(createdReserv.getId());
 		savedReserv.setNumber("309");
-		savedReserv.setPerson("Updated Person");
+		savedReserv.setPerson("Carlinha");
+		savedReserv.setStatus(StatusEnum.confirm.toString());
 
 		ReservationDto updatedReserv = reservService.save(savedReserv, createdSpace.getId());
 		assertNotNull((updatedReserv.getId()));
@@ -97,7 +99,7 @@ class ReservApplicationTests {
 
 	@Test
 	void succesDeleteReservatio() throws Exception {
-		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("Sala de videos", new BigDecimal(10.50), "Arrumar as almofadas.");
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();

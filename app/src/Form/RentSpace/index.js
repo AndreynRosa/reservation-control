@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 
-import CustomDataSelector from '../../components/CustomDataSelector/idex';
-import { useHistory } from 'react-router-dom';
-
 import { TextField, Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useStyles } from './styles';
+
+import CustomDataSelector from '../../components/CustomDataSelector/idex';
 
 import { saveReservation } from '../../services/ReservationService';
 
 function RentSpace(props) {
   const classes = useStyles();
-  const history = useHistory();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');

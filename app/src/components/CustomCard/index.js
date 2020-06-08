@@ -31,7 +31,7 @@ function CustomCard(props) {
           Taxa R$ {vauleOfRent}
         </Typography>
 
-        <Typography color="textSecondary">
+        <Typography color="textSecondary" className={classes.pos}>
           <p>Regras: {roles}</p>
         </Typography>
       </CardContent>
