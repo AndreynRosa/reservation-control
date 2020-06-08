@@ -13,8 +13,7 @@ Foi desenvolvido parcialmente em TDD, assim o projeto possui so casos de sucesso
    <li>Hibernate </li>
    <li>Postgresql </li>
    <li>Junit </li>
- <uL>
-
+ </uL>
 
 <h3>Configuração do banco de dados </h3>
 Caso queira trocar o bacno de dados</br>
