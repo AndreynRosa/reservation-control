@@ -1,39 +1,57 @@
 import React, { useState, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
-
 import { TextField, Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import { useStyles } from './styles';
 
+import { saveSpace } from '../../services/SpacesServices';
+
 export default function SpacesForm(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  useEffect(() => {
-    console.log(props);
-    if (props && props.id) {
-      console.log('Aqui');
-      setName(props.name);
-      setCleanValue(props.cleanValue);
-      setRoles(props.roles);
-    }
-  }, [props]);
   const [name, setName] = useState('');
-  const [cleanValue, setCleanValue] = useState('');
+  const [vauleOfRent, setVauleOfRent] = useState('');
   const [roles, setRoles] = useState('');
+  const [id, setId] = useState('');
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    loadForm();
+  }, [props]);
+
+  function loadForm() {
+    if (props && props.id) {
+      setName(props.name);
+      setVauleOfRent(props.vauleOfRent);
+      setRoles(props.roles);
+      setId(props.id);
+    }
+  }
+
   async function handleSubmit() {
+    if (formIsValid) {
+      await saveForm();
+      window.location.href = "http://localhost:3000/";
+    } else {
+      setError(true);
+    }
+  }
+
+  async function saveForm() {
+    let request = { name, vauleOfRent, roles, id };
+    console.log(request)
     try {
-      // await signUp({ name, email, password });
-      // setError(false);
-      console.log('submit');
+      await saveSpace(request);
       history.push('/');
     } catch (err) {
       setError(true);
     }
+  }
+  function formIsValid() {
+    return name & (name.length > 2) & (vauleOfRent & (vauleOfRent >= 0));
   }
 
   return (
@@ -61,8 +79,8 @@ export default function SpacesForm(props) {
           label="Taxa"
           name="cleanValue"
           autoComplete="taxa"
-          value={cleanValue}
-          onChange={e => setCleanValue(e.target.value)}
+          value={vauleOfRent}
+          onChange={e => setVauleOfRent(e.target.value)}
         />
         <TextField
           variant="outlined"

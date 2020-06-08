@@ -10,23 +10,25 @@ import SpacesForm from '../../Form/SpacesForm';
 
 import { findAllSpaces } from '../../services/SpacesServices';
 
+import { useSpace } from '../../hooks/spaces';
+
 export default function Home() {
   const [data, setData] = useState([]);
-  const [isLoadedSpaces, setIsLoadedSpaces] = useState(false);
+  const [isIniti, setIsInit] = useState(true);
   const classes = useStyles();
-  const mock = {
-    name: 'salão',
-    cleanValue: '50',
-    roles: 'Fechar todas as janelas ao sair',
-    id: 10,
-  };
+
+
   const loadData = useCallback(async () => {
     let response = await findAllSpaces();
     response = await response;
     setData(response.data);
   }, []);
   useEffect(() => {
-    loadData();
+    if(isIniti){
+
+      loadData();
+      setIsInit(false)
+    }
   }, []);
   return (
     <Header>
@@ -41,7 +43,7 @@ export default function Home() {
           ? data.map(space => {
               return (
                 <Grid item xs={4}>
-                  <CustomCard {...space}></CustomCard>
+                  <CustomCard  {...space}></CustomCard>
                 </Grid>
               );
             })

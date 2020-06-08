@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,10 +10,16 @@ import CustomToggelButton from '../CustomToggelButton/CustomToggelButtom';
 import SpacesForm from '../../Form/SpacesForm';
 import { useStyles } from './styles';
 import RentSpace from '../../Form/RentSpace';
+import { delteSpace } from '../../services/SpacesServices';
 
 function CustomCard(props) {
   const { name, vauleOfRent, roles, id } = props;
   const classes = useStyles();
+
+  const onDelete = useCallback(async () => {
+    await delteSpace(id);
+    window.location.href = "http://localhost:3000/";
+  });
 
   return (
     <Card className={classes.root} key={id}>
@@ -33,7 +39,13 @@ function CustomCard(props) {
         <CustomToggelButton buttonLabel="Edit">
           <SpacesForm {...props} />
         </CustomToggelButton>
-        <Button color="secondary" variant="outlined">
+        <Button
+          color="secondary"
+          variant="outlined"
+          onClick={() => {
+            onDelete();
+          }}
+        >
           Deletar
         </Button>
         <CustomToggelButton buttonLabel="Reservar">

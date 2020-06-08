@@ -21,14 +21,14 @@ import com.java.reserv.services.SpacesService;
 @Controller
 @RequestMapping(value = "/v1/spaces")
 public class SpacesController {
-	
+
 	@Autowired
 	private SpacesService service;
-	
+
 	@ResponseBody
 	@Transactional(rollbackOn = Throwable.class)
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-	public ModelAndView save( @RequestBody SpaceEntity space) {
+	public ModelAndView save(@RequestBody SpaceEntity space) {
 
 		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
 		try {
@@ -47,12 +47,31 @@ public class SpacesController {
 	@ResponseBody
 	@Transactional(rollbackOn = Throwable.class)
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-	public ModelAndView listAll( ) {
+	public ModelAndView listAll() {
 
 		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
 		try {
 			List<SpaceEntity> reservation = service.list();
 			modelAndView.addObject("data", reservation);
+			modelAndView.addObject("error", null);
+			return modelAndView;
+		} catch (Exception e) {
+			modelAndView.addObject("data", null);
+			modelAndView.addObject("error", e);
+			return modelAndView;
+
+		}
+	}
+
+	@ResponseBody
+	@Transactional(rollbackOn = Throwable.class)
+	@RequestMapping(value = "", method = RequestMethod.DELETE, produces = "application/json")
+	public ModelAndView delete(@RequestParam String id) {
+
+		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
+		try {
+			service.delete(id);
+			modelAndView.addObject("data", "Delete Sucees");
 			modelAndView.addObject("error", null);
 			return modelAndView;
 		} catch (Exception e) {

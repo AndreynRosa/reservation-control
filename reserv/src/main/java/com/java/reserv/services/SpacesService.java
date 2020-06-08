@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mapping.AccessOptions.SetOptions.Propagation;
 import org.springframework.stereotype.Service;
 
 import com.java.reserv.dao.SpacesDao;
@@ -32,13 +35,13 @@ public class SpacesService {
 	}
 
 	private void assertsRoom(SpaceEntity room) throws Exception {
-		if (null == room.getName() ) {
+		if (null == room.getName()) {
 			throw new Exception(ErrorEnum.ROOM_NAME_NULL.toString());
 		}
 	}
 
 	private boolean isNewUser(SpaceEntity room) {
-		return  null == room.getId() ;
+		return null == room.getId();
 	}
 
 	public SpaceEntity findById(Integer id) {
@@ -46,13 +49,22 @@ public class SpacesService {
 		return opt.orElse(null);
 	}
 
-	public void delete(SpaceEntity room) {
-		dao.delete(room);
+	public void delete(String id) {
+		SpaceEntity space = findById(Integer.parseInt(id));
+		dao.delete(space);
 	}
 
 	public List<SpaceEntity> list() {
-		List<SpaceEntity> rooms = dao.findAll();
-		return rooms;
+		List<SpaceEntity> spaces = dao.findAll();
+		setReservationNull(spaces);
+		return spaces;
+	}
+
+	
+	private void setReservationNull(List<SpaceEntity> spaces) {
+		spaces.stream().forEach(space ->{
+			space.setReserves(null);
+		});
 	}
 
 }

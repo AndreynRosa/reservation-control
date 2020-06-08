@@ -52,7 +52,7 @@ class ReservApplicationTests {
 	void sucessDeleteRoom() throws Exception {
 		SpaceEntity room = getSpace("Name", new BigDecimal(30.01), "Role is create");
 		SpaceEntity createdRoom = spacesService.save(room);
-		spacesService.delete(createdRoom);
+		spacesService.delete(createdRoom.getId().toString());
 		SpaceEntity isDeltedRoom = spacesService.findById(createdRoom.getId());
 		assertNull(isDeltedRoom);
 	}
@@ -70,7 +70,7 @@ class ReservApplicationTests {
 
 	@Test
 	void suceesSaveReservation() throws Exception {
-		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("With reserv", new BigDecimal(30.01), "Role is create");
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();
@@ -80,7 +80,7 @@ class ReservApplicationTests {
 
 	@Test
 	void sucessUpdateReservation() throws Exception {
-		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
+		SpaceEntity space = getSpace("With reserv", new BigDecimal(30.01), "Role is create");
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();
