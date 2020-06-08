@@ -12,21 +12,21 @@ import { useStyles } from './styles';
 import RentSpace from '../../Form/RentSpace';
 
 function CustomCard(props) {
-  const { name, cleanValue, roles, id } = props;
+  const { name, vauleOfRent, roles, id } = props;
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} key={id}>
       <CardContent>
         <Typography variant="h5" component="h2">
           {name}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Taxa de Limpeza:{cleanValue}
+          Taxa R$ {vauleOfRent}
         </Typography>
 
         <Typography color="textSecondary">
-          <p>Regras:{roles}</p>
+          <p>Regras: {roles}</p>
         </Typography>
       </CardContent>
       <CardActions className={classes.footer}>

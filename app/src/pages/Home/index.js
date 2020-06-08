@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { Grid, Button, Paper } from '@material-ui/core';
 
@@ -8,7 +8,11 @@ import CustomCard from '../../components/CustomCard';
 import CustomToggelButton from '../../components/CustomToggelButton/CustomToggelButtom';
 import SpacesForm from '../../Form/SpacesForm';
 
+import { findAllSpaces } from '../../services/SpacesServices';
+
 export default function Home() {
+  const [data, setData] = useState([]);
+  const [isLoadedSpaces, setIsLoadedSpaces] = useState(false);
   const classes = useStyles();
   const mock = {
     name: 'salão',
@@ -16,6 +20,14 @@ export default function Home() {
     roles: 'Fechar todas as janelas ao sair',
     id: 10,
   };
+  const loadData = useCallback(async () => {
+    let response = await findAllSpaces();
+    response = await response;
+    setData(response.data);
+  }, []);
+  useEffect(() => {
+    loadData();
+  }, []);
   return (
     <Header>
       <Paper className={classes.titleContainer}>
@@ -25,18 +37,15 @@ export default function Home() {
         </CustomToggelButton>
       </Paper>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <CustomCard {...mock}></CustomCard>
-        </Grid>{' '}
-        <Grid item xs={4}>
-          <CustomCard {...mock}></CustomCard>
-        </Grid>{' '}
-        <Grid item xs={4}>
-          <CustomCard {...mock}></CustomCard>
-        </Grid>{' '}
-        <Grid item xs={4}>
-          <CustomCard {...mock}></CustomCard>
-        </Grid>{' '}
+        {data
+          ? data.map(space => {
+              return (
+                <Grid item xs={4}>
+                  <CustomCard {...space}></CustomCard>
+                </Grid>
+              );
+            })
+          : ''}
       </Grid>
     </Header>
   );
