@@ -53,11 +53,29 @@ As rotas estão documetadas no postMan no link
 
 
 <h1>REACT APP</h1>
-<h3> Tecnologias</h3>
+<h3> Sobre</h3>
+O sistema criado considera que o usuário já está autenticado, e é um administrador do sistema, pois tem acesso a todas as funcionalidades.
+
+Se pensando em apenas um usuário morador de um condomínio ele teria acesso apenas a fazer reservas. Funcionalidade que pode ser acessada pelos Cards dispostos na pagina de entrada do usuário logado.
 
 
+<h3>Tecnologias </h3>
+Foi desenvolvido utilizando react, por tanto precisára do Node.js na sua maquina;
 <ul>
+  <li>styled-components</li>
+  <li>matirial</li>
   <li>prettier </li> 
    <li>eslint </li>
    <li>hooks </li>
  </uL>
+ </br>
+ <h3> Build do projeto</h3>
+ a partir da raiz do projeto abra a pasta App.</br>
+ rode o script:</br>
+ ### npm install </br>
+ Assim você ira instalar os node_modules.</br>
+ ### npm start </br>
+ O projeto irá rodar e abrir no navegador;
+ No <a>http://localhost:3000/</a>
+ 
+ 
