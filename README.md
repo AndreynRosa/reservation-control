@@ -72,10 +72,14 @@ Foi desenvolvido utilizando react, por tanto precisára do Node.js na sua maquin
  <h3> Build do projeto</h3>
  a partir da raiz do projeto abra a pasta App.</br>
  rode o script:</br>
- ### npm install ### </br>
+ ### `npm install` 
+ ou
+ ### `yarn` 
  Assim você ira instalar os node_modules.</br>
- ### npm start ### </br>
+ ### `npm start` </br>
+ ou
+  ### `yarn start`
  O projeto irá rodar e abrir no navegador;
  No <a>http://localhost:3000/</a>
- 
+
  
