@@ -1,4 +1,6 @@
 # Reservation-control
+<h4> Pagina Home </h4>
+![PAGE HOME](https://github.com/AndreynRosa/reservation-control/blob/master/reademeimg/Home.PNG)
 
 <h1>API JAVA</h1>
 
