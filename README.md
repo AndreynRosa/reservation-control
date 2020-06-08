@@ -20,14 +20,14 @@ Caso queira trocar o bacno de dados</br>
 Vá ate a pasta <b> reservation-control\reserv\src\main\resources </b>
 no documento <b>application.properties </b>
 
-''''
+````
 #DATAS SOURCE
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/myDb
 spring.datasource.username=${dbUser:postgres}
 spring.datasource.password=${dbPass:root}
 spring.datasource.driver-class-name=org.postgresql.Driver
-''''
+````
 </br>
 
 No data source pode trocar a confuração, lembre-se se trocar o driver é preciso importar no poms.xml
