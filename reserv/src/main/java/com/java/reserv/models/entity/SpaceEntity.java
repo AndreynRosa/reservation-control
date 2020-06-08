@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author Andrey Rosa
  *
@@ -38,7 +40,7 @@ public class SpaceEntity implements Serializable {
 	@Column(name = "roles", length = 255)
 	private String roles;
 
-	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(mappedBy = "space", cascade = CascadeType.ALL)
 	private List<ReservationEntity> reserves;
 

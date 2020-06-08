@@ -10,7 +10,7 @@ import SpacesForm from '../../Form/SpacesForm';
 
 import { findAllSpaces } from '../../services/SpacesServices';
 
-import { useSpace } from '../../hooks/spaces';
+// import { useSpace } from '../../hooks/spaces';
 
 export default function Home() {
   const [data, setData] = useState([]);

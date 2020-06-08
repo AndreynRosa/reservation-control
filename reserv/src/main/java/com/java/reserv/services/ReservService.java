@@ -1,5 +1,11 @@
 package com.java.reserv.services;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -7,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.reserv.dao.ReservationDao;
+import com.java.reserv.models.dto.ReservationDto;
 import com.java.reserv.models.entity.ReservationEntity;
 import com.java.reserv.models.entity.SpaceEntity;
 import com.java.reserv.models.enums.ErrorEnum;
@@ -57,5 +64,36 @@ public class ReservService {
 	public void delete(ReservationEntity reserv) {
 		dao.delete(reserv);
 
+	}
+
+	public List<ReservationDto> listAll() {
+		List<ReservationEntity> reservations = dao.findAll();
+		return getDtoList(reservations);
+	}
+
+	private List<ReservationDto> getDtoList(List<ReservationEntity> reservations) {
+		List<ReservationDto> resvervationsDto = new ArrayList<ReservationDto>();
+		reservations.stream().forEach(reservation -> {
+			ReservationDto dto = buildResvationsDto(reservation);
+			resvervationsDto.add(dto);
+		});
+		return resvervationsDto;
+	}
+
+	private ReservationDto buildResvationsDto(ReservationEntity reservation) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+
+		System.out.println(cal.getTime());
+		ReservationDto dto = new ReservationDto();
+		dto.setId(reservation.getId());
+		dto.setNumber(reservation.getNumber());
+		dto.setPerson(reservation.getPerson());
+		dto.setReservDate(cal.getTime());
+		dto.setRoomName(reservation.getSpace().getName());
+		dto.setRoomId(reservation.getSpace().getId());
+		dto.setFormmatedDate(formatter.format(cal.getTime()));
+		dto.setValue(reservation.getSpace().getVauleOfRent());
+		return dto;
 	}
 }

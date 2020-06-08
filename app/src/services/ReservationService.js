@@ -2,16 +2,16 @@ import Service from './Service';
 
 const service = new Service();
 
-const URL = 'http://localhost:9080/v1/spaces';
+const URL = 'http://localhost:9080/v1/reservations';
 
-export async function saveSpace(request) {
+export async function saveReservation(request) {
   return await service.post(URL, request);
 }
 
-export async function findAllSpaces() {
+export async function findAllReservation() {
   return await service.get(URL);
 }
 
-export async function delteSpace(requestParam) {
+export async function delteReservation(requestParam) {
   return await service.delete(`${URL}?id=${requestParam}`);
 }
