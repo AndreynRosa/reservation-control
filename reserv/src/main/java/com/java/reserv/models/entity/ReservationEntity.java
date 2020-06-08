@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -36,10 +37,11 @@ public class ReservationEntity implements Serializable {
 	@Column(name = "number")
 	private String number;
 
+	
 	@Column(name = "status")
-	private Character status;
+	private String status;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	private SpaceEntity space;
 
 	public Integer getId() {
@@ -74,11 +76,11 @@ public class ReservationEntity implements Serializable {
 		this.number = number;
 	}
 
-	public Character getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Character status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

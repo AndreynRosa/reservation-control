@@ -10,22 +10,16 @@ import { useStyles } from './styles';
 function CustomDataSelector(props) {
   const classes = useStyles();
   const {
-    muiPickersUtilsProvider,
-    labelText,
-    id,
-    name,
-    labelProps,
-    inputProps,
-    error,
-    success,
+    setData,
   } = props;
   const [selectedDate, setSelectedDate] = useState(
-    new Date('2014-08-18T21:11:54'),
+    new Date('2020-06-08T21:11:54'),
   );
 
   const handleDateChange = date => {
     console.log(date)
     setSelectedDate(date);
+    setData(date);
     console.log("aqui")
   };
 

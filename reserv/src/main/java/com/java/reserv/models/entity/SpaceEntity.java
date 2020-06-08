@@ -40,7 +40,6 @@ public class SpaceEntity implements Serializable {
 	@Column(name = "roles", length = 255)
 	private String roles;
 
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(mappedBy = "space", cascade = CascadeType.ALL)
 	private List<ReservationEntity> reserves;
 

@@ -34,7 +34,7 @@ export default function Home() {
     <Header>
       <Paper className={classes.titleContainer}>
         <span className={classes.pageTitle}>Home</span>
-        <CustomToggelButton className={classes.btn} buttonLabel="Reservar">
+        <CustomToggelButton className={classes.btn} buttonLabel="Novo Espaço">
           <SpacesForm />
         </CustomToggelButton>
       </Paper>

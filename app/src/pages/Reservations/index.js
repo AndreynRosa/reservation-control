@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import {
   Paper,
@@ -15,6 +15,9 @@ import Header from '../../components/Header';
 import { useStyles } from './styles';
 
 import { findAllReservation } from '../../services/ReservationService';
+import { delteReservation } from '../../services/ReservationService';
+
+import { updateStatus } from '../../services/ReservationService';
 
 function Reservation() {
   const [data, setData] = useState([]);
@@ -26,6 +29,15 @@ function Reservation() {
     setData(response.data);
   }, []);
 
+  const onDelete = useCallback(async id => {
+    await delteReservation(id);
+    loadData();
+  }, []);
+
+  const onStatus = useCallback(async (id, status) => {
+    await updateStatus(id, status);
+    loadData();
+  });
   useEffect(() => {
     if (isIniti) {
       loadData();
@@ -47,11 +59,11 @@ function Reservation() {
           <TableCell>Nomo de</TableCell>
           <TableCell>Data</TableCell>
           <TableCell>Apartamento</TableCell>
+          <TableCell>Status</TableCell>
           <TableCell>Ações</TableCell>
-
         </TableHead>
         {data
-          ? data.map((reservation) => {
+          ? data.map(reservation => {
               return (
                 <TableBody key={reservation}>
                   <TableCell>{reservation.roomName}</TableCell>
@@ -59,12 +71,27 @@ function Reservation() {
                   <TableCell>{reservation.person}</TableCell>
                   <TableCell>{reservation.number}</TableCell>
                   <TableCell>{reservation.formmatedDate}</TableCell>
+                  <TableCell>{reservation.status}</TableCell>
                   <TableCell>
                     <Button
                       variant="outlined"
-                      onClick={() => history.push('/reserv')}
+                      onClick={() => onStatus(reservation.id, 'confirm')}
                     >
-                      Detalhar
+                      Confirmar
+                    </Button>
+
+                    <Button
+                      variant="outlined"
+                      onClick={() => onStatus(reservation.id, 'canceled')}
+                    >
+                      Cancelar
+                    </Button>
+
+                    <Button
+                      variant="outlined"
+                      onClick={() => onDelete(reservation.id)}
+                    >
+                      Deletar
                     </Button>
                   </TableCell>
                 </TableBody>

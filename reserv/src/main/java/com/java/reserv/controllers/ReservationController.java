@@ -23,7 +23,7 @@ import com.java.reserv.services.ReservService;
 public class ReservationController {
 	
 	@Autowired
-	private ReservService reservService;
+	private ReservService service;
 
 	@ResponseBody
 	@Transactional(rollbackOn = Throwable.class)
@@ -32,7 +32,7 @@ public class ReservationController {
 
 		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
 		try {
-			ReservationEntity reservation = reservService.save(reserv, Integer.parseInt(spaceId));
+			ReservationDto reservation = service.save(reserv, Integer.parseInt(spaceId));
 			modelAndView.addObject("data", reservation);
 			modelAndView.addObject("error", null);
 			return modelAndView;
@@ -51,7 +51,7 @@ public class ReservationController {
 
 		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
 		try {
-			List<ReservationDto> reservation = reservService.listAll();
+			List<ReservationDto> reservation = service.listAll();
 			modelAndView.addObject("data", reservation);
 			modelAndView.addObject("error", null);
 			return modelAndView;
@@ -63,6 +63,40 @@ public class ReservationController {
 		}
 	}
 
+	@ResponseBody
+	@Transactional(rollbackOn = Throwable.class)
+	@RequestMapping(value = "/status", method = RequestMethod.POST, produces = "application/json")
+	public ModelAndView updateStatus(@RequestParam String id, String status) {
 
-	
+		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
+		try {
+			service.updateStatus(id,status);
+			modelAndView.addObject("data", "Update status Sucees");
+			modelAndView.addObject("error", null);
+			return modelAndView;
+		} catch (Exception e) {
+			modelAndView.addObject("data", null);
+			modelAndView.addObject("error", e);
+			return modelAndView;
+
+		}
+	}
+	@ResponseBody
+	@Transactional(rollbackOn = Throwable.class)
+	@RequestMapping(value = "", method = RequestMethod.DELETE, produces = "application/json")
+	public ModelAndView delete(@RequestParam String id) {
+
+		ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView());
+		try {
+			service.delete(id);
+			modelAndView.addObject("data", "Delete Sucees");
+			modelAndView.addObject("error", null);
+			return modelAndView;
+		} catch (Exception e) {
+			modelAndView.addObject("data", null);
+			modelAndView.addObject("error", e);
+			return modelAndView;
+
+		}
+	}
 }

@@ -19,6 +19,8 @@ public class ReservationDto {
 
 	private String formmatedDate;
 	
+	private String status;
+	
 	private BigDecimal value;
 	public Integer getId() {
 		return id;
@@ -82,6 +84,14 @@ public class ReservationDto {
 
 	public void setValue(BigDecimal value) {
 		this.value = value;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	

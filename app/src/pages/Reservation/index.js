@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../components/Header';
 
 import { useHistory } from 'react-router-dom';
@@ -13,9 +13,14 @@ import {
 
 import { useStyles } from './styles';
 
-function Reservation() {
+function Reservation(props) {
   const classes = useStyles();
   const history = useHistory();
+
+
+  useEffect(() => {
+    console.log(props.location.state)
+  })
   return (
     <Header>
       <Paper className={classes.titleContainer}>
@@ -31,7 +36,7 @@ function Reservation() {
         </TableHead>
         <TableBody>
           <TableCell>3001 A</TableCell>
-          <TableCell>20/10/2020</TableCell>
+          <TableCell>{20/10/2020}</TableCell>
           <TableCell>Confirmada</TableCell>
           <TableCell>
             <Button variant="outlined" onClick={() => console.log('aqui')}>

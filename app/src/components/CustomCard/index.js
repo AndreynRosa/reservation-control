@@ -13,16 +13,16 @@ import RentSpace from '../../Form/RentSpace';
 import { delteSpace } from '../../services/SpacesServices';
 
 function CustomCard(props) {
-  const { name, vauleOfRent, roles, id } = props;
+  const { name, vauleOfRent, roles, id: spaceId } = props;
   const classes = useStyles();
 
   const onDelete = useCallback(async () => {
-    await delteSpace(id);
+    await delteSpace(spaceId);
     window.location.href = "http://localhost:3000/";
   });
 
   return (
-    <Card className={classes.root} key={id}>
+    <Card className={classes.root} key={spaceId}>
       <CardContent>
         <Typography variant="h5" component="h2">
           {name}

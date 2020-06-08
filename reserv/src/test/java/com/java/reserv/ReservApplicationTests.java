@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.java.reserv.models.dto.ReservationDto;
 import com.java.reserv.models.entity.ReservationEntity;
 import com.java.reserv.models.entity.SpaceEntity;
+import com.java.reserv.models.enums.StatusEnum;
 import com.java.reserv.services.SpacesService;
 import com.java.reserv.services.ReservService;
 
@@ -74,7 +76,7 @@ class ReservApplicationTests {
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();
-		ReservationEntity createdReserv = reservService.save(reservRomm, createdSpace.getId());
+		ReservationDto createdReserv = reservService.save(reservRomm, createdSpace.getId());
 		assertNotNull(createdReserv.getId());
 	}
 
@@ -84,25 +86,24 @@ class ReservApplicationTests {
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();
-		ReservationEntity createdReserv = reservService.save(reservRomm, createdSpace.getId());
+		ReservationDto createdReserv = reservService.save(reservRomm, createdSpace.getId());
 		ReservationEntity savedReserv = reservService.findById(createdReserv.getId());
 		savedReserv.setNumber("309");
 		savedReserv.setPerson("Updated Person");
 
-		ReservationEntity updatedReserv = reservService.save(reservRomm, createdSpace.getId());
-		assertTrue((null != updatedReserv.getId())
-				&& (!updatedReserv.getPerson().equalsIgnoreCase(savedReserv.getPerson())));
+		ReservationDto updatedReserv = reservService.save(savedReserv, createdSpace.getId());
+		assertNotNull((updatedReserv.getId()));
 	}
-	
+
 	@Test
 	void succesDeleteReservatio() throws Exception {
 		SpaceEntity space = getSpace("Name", new BigDecimal(30.01), "Role is create");
 		SpaceEntity createdSpace = spacesService.save(space);
 
 		ReservationEntity reservRomm = getReservRoom();
-		ReservationEntity createdReserv = reservService.save(reservRomm, createdSpace.getId());
-		reservService.delete(createdReserv);
-	
+		ReservationDto createdReserv = reservService.save(reservRomm, createdSpace.getId());
+		reservService.delete(createdReserv.getId().toString());
+
 	}
 
 	private ReservationEntity getReservRoom() {
@@ -110,6 +111,7 @@ class ReservApplicationTests {
 		reserv.setNumber("320 a");
 		reserv.setPerson("Carla");
 		reserv.setReservDate(new Date());
+		reserv.setStatus(StatusEnum.pendig.toString());
 		return reserv;
 	}
 

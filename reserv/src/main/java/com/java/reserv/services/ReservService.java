@@ -17,6 +17,7 @@ import com.java.reserv.models.dto.ReservationDto;
 import com.java.reserv.models.entity.ReservationEntity;
 import com.java.reserv.models.entity.SpaceEntity;
 import com.java.reserv.models.enums.ErrorEnum;
+import com.java.reserv.models.enums.StatusEnum;
 
 @Service
 public class ReservService {
@@ -29,7 +30,7 @@ public class ReservService {
 	@Autowired
 	private ReservationDao dao;
 
-	public ReservationEntity save(ReservationEntity reservation, Integer roomId) throws Exception {
+	public ReservationDto save(ReservationEntity reservation, Integer roomId) throws Exception {
 		logger.info("Start save registration");
 		SpaceEntity space = spacesService.findById(roomId);
 		assertsEntity(reservation, space);
@@ -37,11 +38,15 @@ public class ReservService {
 
 		if (null != reservation.getId()) {
 			logger.info("Updated registration " + reservation.getId());
-			return dao.save(reservation);
+			ReservationEntity entity = dao.save(reservation);
+			return buildResvationsDto(entity);
 		}
 		logger.info("Create registration ");
-		return dao.save(reservation);
-	}
+		ReservationEntity entity = dao.save(reservation);
+		
+		reservation.setStatus(StatusEnum.pendig.toString());
+		return buildResvationsDto(entity);
+	} 	
 
 	private void assertsEntity(ReservationEntity reservation, SpaceEntity space) throws Exception {
 		if (null == space) {
@@ -61,8 +66,10 @@ public class ReservService {
 		return opt.orElse(null);
 	}
 
-	public void delete(ReservationEntity reserv) {
-		dao.delete(reserv);
+	public void delete(String resevId) {
+		logger.info("Start delete registration " + resevId);
+		ReservationEntity reservation = findById(Integer.parseInt(resevId));
+		dao.delete(reservation);
 
 	}
 
@@ -84,7 +91,6 @@ public class ReservService {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 
-		System.out.println(cal.getTime());
 		ReservationDto dto = new ReservationDto();
 		dto.setId(reservation.getId());
 		dto.setNumber(reservation.getNumber());
@@ -94,6 +100,14 @@ public class ReservService {
 		dto.setRoomId(reservation.getSpace().getId());
 		dto.setFormmatedDate(formatter.format(cal.getTime()));
 		dto.setValue(reservation.getSpace().getVauleOfRent());
+		dto.setStatus(reservation.getStatus());
 		return dto;
+	}
+
+	public void updateStatus(String id, String status) throws Exception {
+		ReservationEntity reservation = findById(Integer.parseInt(id));
+		reservation.setStatus(status);
+		save(reservation, reservation.getSpace().getId());
+
 	}
 }
