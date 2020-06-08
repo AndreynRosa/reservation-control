@@ -52,9 +52,7 @@ As rotas estão documetadas no postMan no link
 
 <h1>REACT APP</h1>
 <h3> Sobre</h3>
-O sistema criado considera que o usuário já está autenticado, e é um administrador do sistema, pois tem acesso a todas as funcionalidades.
-
-Se pensando em apenas um usuário morador de um condomínio ele teria acesso apenas a fazer reservas. Funcionalidade que pode ser acessada pelos Cards dispostos na pagina de entrada do usuário logado.
+O sistema   que foi criado considera que o usuário já está autenticado, e é um administrador do sistema, pois tem acesso a todas as funcionalidades.
 
 
 <h3>Tecnologias </h3>
