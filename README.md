@@ -16,4 +16,6 @@ Foi desenvolvido parcialmente em TDD, assim o projeto possui so casos de sucesso
  <uL>
 
 
-### `Banco de dados`
+<h3>Configuração do banco de dados </h3>
+Caso queira trocar o bacno de dados</br>
+Vá ate a pasta <b> reservation-control\reserv\src\main\resources </b>
