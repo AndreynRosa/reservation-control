@@ -3,8 +3,8 @@
 <h1>API JAVA</h1>
 
 <h3> Tecnologias</h3>
-Este projeto consite em um Api desenvolvida com Java 8, na IDE do Eclipse. (mas poderá facilmente rodar com outro ou diretamente no maven). </br >
-Foi desenvolvido parcialmente em TDD, assim o projeto possui so casos de sucesso para o crud das duas entidas. 
+Este projeto consite em uma Api desenvolvida com Java 8, na IDE do Eclipse (mas poderá facilmente rodar com outro ou diretamente com maven). </br >
+Foi desenvolvido parcialmente em TDD, assim o projeto possui só casos de sucesso para o crud das duas entidades. 
 
 <ul>
   <li>SpringBoot </li> 
@@ -29,17 +29,16 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 ````
 </br>
 
-No bloco de data source pode trocar a confuração, lembre-se se trocar o driver é preciso importar no poms.xml</br>
-Crie um banco de dados chamado myDb e  rode build do projeto. Ele se encarregará de criar as tabelas no seu banco.
+É possivél realizar a troca da configuração no bloco de data source. Lembre-se, se trocar o driver é preciso importar no poms.xml</br>
+desta forma, crie um banco de dados chamado myDb e  rode build do projeto. Ele se encarregará de criar as tabelas no seu banco.
 </br>
 
 <h3> Rodar o projeto, o Run </h3>
-Você pode importar toda a pasta resve para a IDE de sua preferencia. </br>
+Você pode importar toda a pasta reserv para a IDE de sua preferência. </br>
 Caso queira rodar os testes, terá uma carga de dados interessante para visualizar o sistema.</br>
 Os testes se encontram na pasta <b> \reservation-control\reserv\src\test\java\com\java\reserv </b>
-Para executalos depois de biuld 
-Execute como um pojeto Spring ou se previr via Maven via Maven </br>
-Lembrando que o prejeto feio feito com Eclipse.
+Execute como um pojeto Spring ou se previr via Maven </br>
+Lembrando que o prejeto foi feito com Eclipse.
 Rode como um projeto spring 
 </br>
 </br>
