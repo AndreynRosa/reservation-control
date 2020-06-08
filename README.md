@@ -63,7 +63,7 @@ Se pensando em apenas um usuário morador de um condomínio ele teria acesso ape
 Foi desenvolvido utilizando react, por tanto precisára do Node.js na sua maquina;
 <ul>
   <li>styled-components</li>
-  <li>matirial</li>
+  <li>matirial-ui</li>
   <li>prettier </li> 
    <li>eslint </li>
    <li>hooks </li>
