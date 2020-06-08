@@ -30,4 +30,4 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 ````
 </br>
 
-No data source pode trocar a confuração, lembre-se se trocar o driver é preciso importar no poms.xml
+No bloco de data source pode trocar a confuração, lembre-se se trocar o driver é preciso importar no poms.xml
