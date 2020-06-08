@@ -52,4 +52,12 @@ As rotas estão documetadas no postMan no link
 
 
 
+<h1>REACT APP</h1>
+<h3> Tecnologias</h3>
 
+
+<ul>
+  <li>prettier </li> 
+   <li>eslint </li>
+   <li>hooks </li>
+ </uL>
