@@ -80,7 +80,7 @@ Foi desenvolvido utilizando react, por tanto precisára do Node.js na sua maquin
  ou
  
 <h4>yarn Start</h4>
- O projeto irá rodar e abrir no navegador;
- No <a>http://localhost:3000/</a>
+ O projeto irá rodar e abrir no navegador</br<
+ <a>http://localhost:3000/</a>
 
  
